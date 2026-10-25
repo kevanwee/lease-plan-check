@@ -1,0 +1,28 @@
+{
+  "synthetic": true,
+  "oracle": "Independent rectangle decomposition and affine determinant; not survey/legal conclusions",
+  "area_derivation": "600\u00d7200 + 300\u00d7300 = 210000 pixel\u00b2; |.05\u00d7(-.04)-.01\u00d7.02|=.0022; area=462 m\u00b2",
+  "measurements": {
+    "premises-area": 462,
+    "terrace-inclusion": 110,
+    "cupboard-exclusion": 13.2,
+    "frontage-length": 32.31098884280702,
+    "side-length": 20.615528128088304,
+    "clear-access": 0
+  },
+  "mismatches": [
+    "premises-area",
+    "terrace-inclusion",
+    "cupboard-exclusion",
+    "side-length",
+    "blocked-access"
+  ],
+  "matches": [
+    "frontage-length",
+    "clear-access"
+  ],
+  "positive_overlap": "blocked-access",
+  "control_count": 6,
+  "feature_count": 8,
+  "claim_count": 7
+}
