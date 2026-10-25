@@ -1,0 +1,329 @@
+{
+  "$defs": {
+    "Asset": {
+      "additionalProperties": false,
+      "properties": {
+        "file": {
+          "title": "File",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "file",
+        "sha256"
+      ],
+      "title": "Asset",
+      "type": "object"
+    },
+    "Calibration": {
+      "additionalProperties": false,
+      "properties": {
+        "units": {
+          "const": "metres",
+          "default": "metres",
+          "title": "Units",
+          "type": "string"
+        },
+        "controls": {
+          "items": {
+            "$ref": "#/$defs/Control"
+          },
+          "minItems": 3,
+          "title": "Controls",
+          "type": "array"
+        },
+        "max_residual_m": {
+          "default": 0.1,
+          "exclusiveMinimum": 0,
+          "title": "Max Residual M",
+          "type": "number"
+        }
+      },
+      "required": [
+        "controls"
+      ],
+      "title": "Calibration",
+      "type": "object"
+    },
+    "Claim": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[a-z][a-z0-9-]{0,62}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "area",
+            "length",
+            "includes",
+            "excludes",
+            "access-clear"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "feature": {
+          "title": "Feature",
+          "type": "string"
+        },
+        "other": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Other"
+        },
+        "stated": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Stated"
+        },
+        "tolerance": {
+          "default": 0.1,
+          "minimum": 0,
+          "title": "Tolerance",
+          "type": "number"
+        },
+        "route_width_m": {
+          "default": 1.0,
+          "exclusiveMinimum": 0,
+          "title": "Route Width M",
+          "type": "number"
+        },
+        "evidence": {
+          "$ref": "#/$defs/Reference"
+        },
+        "interpretation": {
+          "default": "proposed",
+          "enum": [
+            "proposed",
+            "human-confirmed"
+          ],
+          "title": "Interpretation",
+          "type": "string"
+        },
+        "reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reviewer"
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "feature",
+        "evidence"
+      ],
+      "title": "Claim",
+      "type": "object"
+    },
+    "Control": {
+      "additionalProperties": false,
+      "properties": {
+        "pixel": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Pixel",
+          "type": "array"
+        },
+        "metres": {
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Metres",
+          "type": "array"
+        }
+      },
+      "required": [
+        "pixel",
+        "metres"
+      ],
+      "title": "Control",
+      "type": "object"
+    },
+    "Feature": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[a-z][a-z0-9-]{0,62}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "label": {
+          "minLength": 1,
+          "title": "Label",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "polygon",
+            "line"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "points": {
+          "items": {
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "type": "array"
+          },
+          "minItems": 2,
+          "title": "Points",
+          "type": "array"
+        },
+        "provenance": {
+          "minLength": 8,
+          "title": "Provenance",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "kind",
+        "points",
+        "provenance"
+      ],
+      "title": "Feature",
+      "type": "object"
+    },
+    "Reference": {
+      "additionalProperties": false,
+      "properties": {
+        "start": {
+          "minimum": 0,
+          "title": "Start",
+          "type": "integer"
+        },
+        "end": {
+          "exclusiveMinimum": 0,
+          "title": "End",
+          "type": "integer"
+        },
+        "quote": {
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        },
+        "locator": {
+          "minLength": 1,
+          "title": "Locator",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end",
+        "quote",
+        "locator"
+      ],
+      "title": "Reference",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "1",
+      "default": "1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "matter": {
+      "minLength": 1,
+      "title": "Matter",
+      "type": "string"
+    },
+    "synthetic": {
+      "default": false,
+      "title": "Synthetic",
+      "type": "boolean"
+    },
+    "plan": {
+      "$ref": "#/$defs/Asset"
+    },
+    "lease": {
+      "$ref": "#/$defs/Asset"
+    },
+    "calibration": {
+      "$ref": "#/$defs/Calibration"
+    },
+    "features": {
+      "items": {
+        "$ref": "#/$defs/Feature"
+      },
+      "minItems": 1,
+      "title": "Features",
+      "type": "array"
+    },
+    "claims": {
+      "items": {
+        "$ref": "#/$defs/Claim"
+      },
+      "minItems": 1,
+      "title": "Claims",
+      "type": "array"
+    }
+  },
+  "required": [
+    "matter",
+    "plan",
+    "lease",
+    "calibration",
+    "features",
+    "claims"
+  ],
+  "title": "Matter",
+  "type": "object"
+}

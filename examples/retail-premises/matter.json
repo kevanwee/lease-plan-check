@@ -1,0 +1,223 @@
+{
+  "schema_version": "1",
+  "matter": "Retail premises lease",
+  "synthetic": true,
+  "plan": {
+    "file": "plan.png",
+    "sha256": "609afd629cab9e3548105e322e9756e6baacda9aa6cad969b2e0d84817cb6fb6"
+  },
+  "lease": {
+    "file": "lease.txt",
+    "sha256": "7619c593460d3b358b6afeec4f6ed9dfb876aefc1dc3c180011bacb1f003b127"
+  },
+  "calibration": {
+    "units": "metres",
+    "max_residual_m": 0.05,
+    "controls": [
+      {
+        "pixel": [
+          100,
+          600
+        ],
+        "metres": [
+          0,
+          0
+        ]
+      },
+      {
+        "pixel": [
+          700,
+          600
+        ],
+        "metres": [
+          30,
+          0
+        ]
+      },
+      {
+        "pixel": [
+          100,
+          200
+        ],
+        "metres": [
+          0,
+          20
+        ]
+      },
+      {
+        "pixel": [
+          700,
+          200
+        ],
+        "metres": [
+          30,
+          20
+        ]
+      }
+    ]
+  },
+  "features": [
+    {
+      "id": "shop-floor",
+      "label": "shop floor",
+      "kind": "polygon",
+      "points": [
+        [
+          100,
+          200
+        ],
+        [
+          700,
+          200
+        ],
+        [
+          700,
+          600
+        ],
+        [
+          100,
+          600
+        ]
+      ],
+      "provenance": "Human-digitised synthetic plan feature; inspect against the supplied raster"
+    },
+    {
+      "id": "terrace",
+      "label": "terrace",
+      "kind": "polygon",
+      "points": [
+        [
+          700,
+          200
+        ],
+        [
+          900,
+          200
+        ],
+        [
+          900,
+          600
+        ],
+        [
+          700,
+          600
+        ]
+      ],
+      "provenance": "Human-digitised synthetic plan feature; inspect against the supplied raster"
+    },
+    {
+      "id": "frontage",
+      "label": "frontage",
+      "kind": "line",
+      "points": [
+        [
+          100,
+          200
+        ],
+        [
+          700,
+          200
+        ]
+      ],
+      "provenance": "Human-digitised synthetic plan feature; inspect against the supplied raster"
+    },
+    {
+      "id": "access-route",
+      "label": "access route",
+      "kind": "line",
+      "points": [
+        [
+          400,
+          650
+        ],
+        [
+          400,
+          550
+        ]
+      ],
+      "provenance": "Human-digitised synthetic plan feature; inspect against the supplied raster"
+    },
+    {
+      "id": "obstruction",
+      "label": "obstruction",
+      "kind": "polygon",
+      "points": [
+        [
+          350,
+          580
+        ],
+        [
+          450,
+          580
+        ],
+        [
+          450,
+          620
+        ],
+        [
+          350,
+          620
+        ]
+      ],
+      "provenance": "Human-digitised synthetic plan feature; inspect against the supplied raster"
+    }
+  ],
+  "claims": [
+    {
+      "id": "shop-area",
+      "kind": "area",
+      "feature": "shop-floor",
+      "other": null,
+      "stated": 650,
+      "tolerance": 1,
+      "evidence": {
+        "start": 36,
+        "end": 93,
+        "quote": "1. The shop floor area is stated to be 650 square metres.",
+        "locator": "Premises schedule, clause 1"
+      }
+    },
+    {
+      "id": "terrace-inclusion",
+      "kind": "includes",
+      "feature": "shop-floor",
+      "other": "terrace",
+      "stated": null,
+      "tolerance": 0.1,
+      "evidence": {
+        "start": 94,
+        "end": 165,
+        "quote": "2. The premises include the entire terrace shown beside the shop floor.",
+        "locator": "Premises schedule, clause 2"
+      }
+    },
+    {
+      "id": "frontage-length",
+      "kind": "length",
+      "feature": "frontage",
+      "other": null,
+      "stated": 31,
+      "tolerance": 0.1,
+      "evidence": {
+        "start": 166,
+        "end": 213,
+        "quote": "3. The frontage is stated to measure 31 metres.",
+        "locator": "Premises schedule, clause 3"
+      }
+    },
+    {
+      "id": "service-access",
+      "kind": "access-clear",
+      "feature": "access-route",
+      "other": "obstruction",
+      "stated": null,
+      "tolerance": 0.01,
+      "evidence": {
+        "start": 214,
+        "end": 292,
+        "quote": "4. The service access route must remain clear across its full one-metre width.",
+        "locator": "Premises schedule, clause 4"
+      }
+    }
+  ]
+}
