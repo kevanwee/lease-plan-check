@@ -9,7 +9,7 @@ from typing import Literal
 
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
-from pydantic import Field, StrictBool, StrictFloat, model_validator
+from pydantic import Field, StrictBool, StrictFloat, StrictInt, model_validator
 from shapely.geometry import LineString, Polygon
 from shapely.validation import explain_validity
 
@@ -19,8 +19,8 @@ Point = tuple[StrictFloat, StrictFloat]
 
 
 class Reference(Strict):
-    start: int = Field(ge=0)
-    end: int = Field(gt=0)
+    start: StrictInt = Field(ge=0)
+    end: StrictInt = Field(gt=0)
     quote: str = Field(min_length=1)
     locator: str = Field(min_length=1)
 

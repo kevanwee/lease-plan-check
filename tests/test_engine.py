@@ -134,3 +134,10 @@ def test_boolean_coordinate_refused():
     raw["features"][0]["points"][0] = [True, 200]
     with pytest.raises(ValueError):
         Matter.model_validate(raw)
+
+
+def test_boolean_evidence_offset_refused():
+    raw = read_json(ROOT / "matter.json")
+    raw["claims"][0]["evidence"]["start"] = True
+    with pytest.raises(ValueError):
+        Matter.model_validate(raw)
