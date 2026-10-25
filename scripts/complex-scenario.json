@@ -1,0 +1,11 @@
+{
+  "package": "lease_plan_check",
+  "args": [
+    "check",
+    "examples/irregular-premises/matter.json"
+  ],
+  "pending_rules": [
+    "lease-reading"
+  ],
+  "screenshot": "docs/images/complex-review.png"
+}

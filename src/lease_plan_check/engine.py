@@ -38,7 +38,7 @@ class Control(Strict):
 class Calibration(Strict):
     units: Literal["metres"] = "metres"
     controls: list[Control] = Field(min_length=3)
-    max_residual_m: float = Field(default=0.1, gt=0)
+    max_residual_m: StrictFloat = Field(default=0.1, gt=0)
 
 
 class Feature(Strict):
@@ -54,9 +54,9 @@ class Claim(Strict):
     kind: Literal["area", "length", "includes", "excludes", "access-clear"]
     feature: str
     other: str | None = None
-    stated: float | None = Field(default=None, ge=0)
-    tolerance: float = Field(default=0.1, ge=0)
-    route_width_m: float = Field(default=1.0, gt=0)
+    stated: StrictFloat | None = Field(default=None, ge=0)
+    tolerance: StrictFloat = Field(default=0.1, ge=0)
+    route_width_m: StrictFloat = Field(default=1.0, gt=0)
     evidence: Reference
     interpretation: Literal["proposed", "human-confirmed"] = "proposed"
     reviewer: str | None = None
