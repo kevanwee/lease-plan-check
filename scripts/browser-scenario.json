@@ -1,0 +1,7 @@
+{
+  "package": "lease_plan_check",
+  "args": [
+    "check",
+    "examples/retail-premises/matter.json"
+  ]
+}
